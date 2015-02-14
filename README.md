@@ -259,6 +259,9 @@ var myString = 'A rather long string of English text, an error message \
 > [NodeJs](http://nodejs.org/)
 
 
+###Reference
 
-
+>[Bootstrap 编码规范](http://codeguide.bootcss.com/)
+>[NEC 编码规范](http://nec.netease.com/standard)
+>[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 
