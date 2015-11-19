@@ -2,34 +2,52 @@
 
 ###css规范
 
-- 涉及js影响的css类以 j 开头， 不带任何样式
-- 命名语意化，全部小写
-- 全局通用类放在 global css 样式以 以g开头
+- 全局通用类放在 global.css 样式以 g- 开头
 - 两个空格代替制表符
 - 为选择器分组时，将单独的选择器单独放在一行
 - 对于属性值或颜色参数，省略小于 1 的小数前面的 0 （例如，.5 代替 0.5；-.5px 代替 -0.5px）
-- 十六进制值应该全部小写，例如，#fff。在扫描文档时，小写字符易于分辨，因为他们的形式更易于区分
-- 避免为 0 值指定单位，例如，用 margin: 0; 代替 margin: 0px;
-- 相关的属性声明 －－ sublime 插件格式化
+- 十六进制值应该全部小写, 例如: #fff 在扫描文档时, 小写字符易于分辨, 因为他们的形式更易于区分
+- 避免为 0 值指定单位, 例如: 用 margin: 0; 代替 margin: 0px;
 - 简写形式的属性声明
 - 良好的注释
-- css编码风格 sublime cssformat
-- 尽量少的重绘和重排，当需要给元素设置样式时，超过2个及2个以上时，采用className处理
-- CSS级联深度不能超过4层
+- 尽量少的重绘和重排, 当需要给元素设置样式时, 超过2个及2个以上时, 采用className处理
+- 用元素使用 class ，避免使用 id tagName， 尽可能简短
+- 减少子选择器的层级, CSS级联深度不能超过4层, 降低选择符整体的权重, 减少对HTML结构的依赖
+- 使用组合的CSS类选择器 多组合,少继承
+- css编码风格
+```css
+/* Compact Style */
+.app { background: #333; color: #fff; }
+
+or 
+
+/* Expanded Style */
+.app {
+  background: #333;
+  color: #fff;
+}
+
+```
 
 ####class 命名
 
-- class 名称中只能出现小写字符和破折号 －（dashe）
-- 破折号应当用于相关 class 的命名（类似于命名空间）（例如，.btn 和 .btn-danger）。
-- 避免过度任意的简写。.btn 代表 button，但是 .s 不能表达任何意思。
-- class 名称应当尽可能短，并且意义明确。
-- 使用有意义的名称。使用有组织的或目的明确的名称，不要使用表现形式（presentational）的名称。
-- 基于最近的父 class 或基本（base） class 作为新 class 的前缀。
-- 使用 .js-* class 来标识行为（与样式相对），并且不要将这些 class 包含到 CSS 文件中。
+- 命名语意化, class 名称中只能出现小写字符和破折号 -
+- class 名称应当尽可能短, 并且意义明确
+- 破折号应当用于相关 class 的命名（类似于命名空间）（例如，.btn 和 .btn-danger）
+- 避免过度任意的简写, .btn 代表 button，但是 .s 不能表达任何意思
+- 使用有意义的名称, 使用有组织的或目的明确的名称, 不要使用表现形式（presentational）的名称
+- 使用 .j-* class 来标识行为, 不要给这些 class 包含任何样式
 
-####选择器
+- 组成类名称的关键字的连接符为中划线 -
+```css
+  .app-title { }
+```
 
-- 用元素使用 class ，避免使用 id tagName， 尽可能简短
+- 为了避免class命名的重复，命名时取父元素的class名作为前缀。
+```css
+  .app { }
+  .app-title{ }
+```
 
 ###Javascript规范
 
@@ -219,48 +237,38 @@ var myString = 'A rather long string of English text, an error message \
 - JavaScript代码不应该嵌入在HTML文件里，除非这些代码是一个单独的会话特有的或者是需要有后台开发工程师进行控制的。HTML里的JavaScript代码大大增加了页面的大小，并且很难通过缓存和压缩来缓解，同时也难以通过前端来维护。
 - JavaScript文件应该在`body`里越靠后的位置越好，最好是放在最后面。这减少了由于加载`script`而导致的其它页面组件的延迟。
 
+###图片
+- 切图时必须合理的压缩每张图片，提高页面加载速度，如果能用1像素的就切成1像素
+- 一般情况下，请保存为 `png-8` 格式，所有能保存为静态gif的图像，都应该保存为 png-8 格式
+- png-24与JPG都是一种压缩图像格式，但是与JPG不同，`png-24` 是无损压缩，因此不会降低图像的品质（比如JPG图像锐利边缘的噪点），这也是要求效果图使用`png-24`格式保存的原因。
+- JPG就不多说了。JPG作为一种有损压缩格式，在每次使用它压缩的时候，均会再次降低图像的品质。多次编辑同一个JPG图像，情况会变得越来越糟糕。所以一定要从设计师手中拿到无损格式的设计稿再进行工作。一般不应该为JPG格式，除非这个图像：色值远超过256色(鲜艳而华丽)，保存为索引颜色会出现明显的梯度变化（梯田），颜色抖动（点状渐变）
+- CSS背景图使用 PNG 格式的图像
+
+###构建工具 and 开发环境
+- Gulp, Webpack
+- Sublime
+- NodeJs
+- Nginx
+- Chrome
+
 ###编辑器配置
 - 用两个空格代替制表符（soft-tab 即用空格代表 tab 符）
 - 保存文件时，删除尾部的空白符
 - 设置文件编码为 UTF-8
 - 在文件结尾添加一个空白行
 
-
-###图片
-- 切图时必须合理的压缩每张图片，提高页面加载速度，如果能用1像素的就切成1像素
-- 一般情况下，请保存为 `png-8` 格式，所有能保存为静态gif的图像，都应该保存为 png-8 格式
-- png-24与jpg都是一种压缩图像格式，但是与jpg不同，`png-24` 是无损压缩，因此不会降低图像的品质（比如jpg图像锐利边缘的噪点），这也是要求效果图使用`png-24`格式保存的原因。
-- jpg就不多说了。jpg作为一种有损压缩格式，在每次使用它压缩的时候，均会再次降低图像的品质。多次编辑同一个jpg图像，情况会变得越来越糟糕。所以一定要从设计师手中拿到无损格式的设计稿再进行工作。一般不应该为JPG格式，除非这个图像：色值远超过256色(鲜艳而华丽)，保存为索引颜色会出现明显的梯度变化（梯田），颜色抖动（点状渐变）
-- 一般css背景图不使用 jpg 格式的图像
-
-###构建工具 and 开发环境
-- Gulp
-- Sublime
-- NodeJs
-- Nginx
-- Chrome
-
 ####Sublime Package
-
-- jsformat js
-- jQuery js提示插件
-- Css format css格式化
-- Csscomb css属性格式化排序
-
-> 包配置文件(需翻墙):[Preferences.sublime-settings](https://gist.github.com/RaymondYe/6a40e34a49e36fcced09)
-> Sublime配置文件(需翻墙):[Package Control.sublime-settings](https://gist.github.com/RaymondYe/094985865060b94a6f63)
+- Sublime配置文件(需翻墙):[Preferences.sublime-settings](https://gist.github.com/RaymondYe/6a40e34a49e36fcced09)
+- 包配置文件(需翻墙):[Package Control.sublime-settings](https://gist.github.com/RaymondYe/094985865060b94a6f63)
 
 ####Gulp
-
-- [Gulp官网](http://gulpjs.com/)
-- gulp.spritesmith  css sprite插件
+- [Gulp](http://gulpjs.com/)
+- [Webpack](http://webpack.github.io/)
 
 ####NodeJs
-> [NodeJs](http://nodejs.org/)
-
+- [NodeJs](http://nodejs.org/)
 
 ###Reference
-
 - [Bootstrap 编码规范](http://codeguide.bootcss.com/)
 - [NEC 编码规范](http://nec.netease.com/standard)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
