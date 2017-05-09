@@ -1,6 +1,6 @@
 # The-front-end-code-specification
 
-###css规范
+### css规范
 
 - 全局通用类放在 global.css 样式以 g- 开头
 - 两个空格代替制表符
@@ -15,6 +15,7 @@
 - 减少子选择器的层级, CSS级联深度不能超过4层, 降低选择符整体的权重, 减少对HTML结构的依赖
 - 使用组合的CSS类选择器 多组合,少继承
 - css编码风格
+
 ```css
 /* Compact Style */
 .app { background: #333; color: #fff; }
@@ -29,7 +30,7 @@ or
 
 ```
 
-####class 命名
+#### class 命名
 
 - 命名语意化, class 名称中只能出现小写字符和破折号 -
 - class 名称应当尽可能短, 并且意义明确
@@ -49,25 +50,25 @@ or
   .app-title{ }
 ```
 
-###Javascript规范
+### Javascript规范
 
-#####变量
+##### 变量
 - 必须使用`var`关键字定义变量。
 
-#####常量
+##### 常量
 - 使用大写字符，用下划线分隔，例如：`NAME_LIKE_THIS`；
 - 推荐使用这样的常量明明模式：`<常量类型>_<适用场景>_<具体作用>`，例如：
 
-#####分号
+##### 分号
 - 推荐使用分号，但是不作检查。
 
-#####等值比较
+##### 等值比较
 - 始终使用===和!==操作符会更好。==和!=操作符会做类型强制转换。特别是，不要使用==来和"假"值做比较。
 
-#####Latedef
+##### Latedef
 - 变量声明丢在函数顶部。
 
-#####块内函数声明
+##### 块内函数声明
 - 不能在一个块内声明一个函数。不能写成：
 
 ```javascript
@@ -84,10 +85,10 @@ if (x) {
 }
 ```
 
-#####标准特性
+##### 标准特性
 - 优先使用标准特性，最大化可移植性和兼容性，尽量使用标准方法。例如优先使用`string.charAt(3)`，而不使用`string[3]`
 
-#####没有必要分装基本类型
+##### 没有必要分装基本类型
 
 - 完全没必要对基础类型进行分装，有可能会引起问题：
 
@@ -109,43 +110,43 @@ typeof Boolean(0) == 'boolean';
 typeof new Boolean(0) == 'object';
 ```
 
-#####for-in迭代
+##### for-in迭代
 - 只使用`for-in`来迭代`Object`，即所谓的`Map`或者`Hash`。用来迭代`Array`有时候会有问题：
 - 使用普通的`for`循环来迭代数组：
 
-#####关联数组
+##### 关联数组
 - 不允许使用关联数组，即不要把`Array`当作`Object`来使用。
 
-#####多行字符串
+##### 多行字符串
 - 不允许像下面这边书写多行字符串，非`ECMAScript`规范：
 ```javascript
 var myString = 'A rather long string of English text, an error message \
                 actually that just keeps going and going -- an error 。';
 ```
 
-#####内置对象原型
+##### 内置对象原型
 - 禁止扩展原生对象如： Array Math String 。
 
-#####console & debugger
+##### console & debugger
 - 在提交的代码中不允许出现`console`、`debugger`。
 - 开发时期的解决方案
 
-#####dataset
+##### dataset
 - 不推荐自定义属性，推荐使用`dataset`
 
-#####引号
+##### 引号
 - 字符串定义时推荐使用单引号`'`，关键字、保留字使用引号括起来
 
-####编码风格
+#### 编码风格
 
-#####命名
+##### 命名
 
 - 常见的命名方式：`functionNamesLikeThis`, `variableNamesLikeThis`, `ClassNamesLikeThis`, `EnumNamesLikeThis`, `methodNamesLikeThis`和`SYMBOLIC_CONSTANTS_LIKE_THIS`。
 - 私有的属性、变量或者方法以“`_`”开头
 - 文件的命名包括小写字母、`-`、`_`（不能包含其他字符，且`-`优于`_`），使用`.js`结尾。
 - 不能使用拼音。
 
-#####推荐命名范式
+##### 推荐命名范式
 
 - `dom`选择器调用的返回值以`$`开头，这是`jQuery`常用的方式：`$body = jQuery(document.body)`;
 - `boolean`定义：比起`bEmpty`，更推荐使用`isEmpty`,`canExit`,`hasNext`这样的命名方法。推荐使用`is`、`can`、`has`这样的前缀作为这类变量的前缀。
@@ -154,10 +155,10 @@ var myString = 'A rather long string of English text, an error message \
 - 比起`arrBooks`，更推荐使用`bookList`，比起`objStates`，更推荐使用`stateMap`。
 - 推荐的一些回调函数（或对象）的范式：`wordHandler`、`changeListener`、`getBookCallback`、`onLoad`。也可以使用其他能够表达功能的命名方式
 
-#####字符串
+##### 字符串
 - 单引号`'`优于双引号`"`（包含HTML的字符串）。
 
-#####代码风格
+##### 代码风格
 - 使用 sublime 插件(jsformat)统一格式化
 
 - 模块
@@ -231,46 +232,46 @@ var myString = 'A rather long string of English text, an error message \
 })(this);
 ```
 
-#####文件
+##### 文件
 
 - JavaScript程序应该作为一个 .js文件存储和发布，文件编码为`utf-8`。
 - JavaScript代码不应该嵌入在HTML文件里，除非这些代码是一个单独的会话特有的或者是需要有后台开发工程师进行控制的。HTML里的JavaScript代码大大增加了页面的大小，并且很难通过缓存和压缩来缓解，同时也难以通过前端来维护。
 - JavaScript文件应该在`body`里越靠后的位置越好，最好是放在最后面。这减少了由于加载`script`而导致的其它页面组件的延迟。
 
-###图片
+### 图片
 - 切图时必须合理的压缩每张图片，提高页面加载速度，如果能用1像素的就切成1像素
 - 一般情况下，请保存为 `png-8` 格式，所有能保存为静态gif的图像，都应该保存为 png-8 格式
 - png-24与JPG都是一种压缩图像格式，但是与JPG不同，`png-24` 是无损压缩，因此不会降低图像的品质（比如JPG图像锐利边缘的噪点），这也是要求效果图使用`png-24`格式保存的原因。
 - JPG就不多说了。JPG作为一种有损压缩格式，在每次使用它压缩的时候，均会再次降低图像的品质。多次编辑同一个JPG图像，情况会变得越来越糟糕。所以一定要从设计师手中拿到无损格式的设计稿再进行工作。一般不应该为JPG格式，除非这个图像：色值远超过256色(鲜艳而华丽)，保存为索引颜色会出现明显的梯度变化（梯田），颜色抖动（点状渐变）
 - CSS背景图使用 PNG 格式的图像
 
-###构建工具 and 开发环境
+### 构建工具 and 开发环境
 - Gulp, Webpack
 - Sublime
 - NodeJs
 - Nginx
 - Chrome
 
-###编辑器配置
+### 编辑器配置
 - 用两个空格代替制表符（soft-tab 即用空格代表 tab 符）
 - 保存文件时，删除尾部的空白符
 - 设置文件编码为 UTF-8
 - 在文件结尾添加一个空白行
 
-####Sublime Package
+#### Sublime Package
 - Sublime配置文件(需翻墙):[Preferences.sublime-settings](https://gist.github.com/RaymondYe/6a40e34a49e36fcced09)
 - 包配置文件(需翻墙):[Package Control.sublime-settings](https://gist.github.com/RaymondYe/094985865060b94a6f63)
 
-####Gulp
+#### Gulp
 - [Gulp](http://gulpjs.com/)
 
-###Webpack
+### Webpack
 - [Webpack](http://webpack.github.io/)
 
-####NodeJs
+#### NodeJs
 - [NodeJs](http://nodejs.org/)
 
-###Reference
+### Reference
 - [Bootstrap 编码规范](http://codeguide.bootcss.com/)
 - [NEC 编码规范](http://nec.netease.com/standard)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
